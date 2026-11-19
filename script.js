@@ -10,14 +10,3 @@ const db = createClient(
 );
 
 console.log("Supabase Connected");
-
-async function testDatabase() {
-    const { data, error } = await db
-        .from("posts")
-        .select("*");
-
-    console.log("DATA:", data);
-    console.log("ERROR:", error);
-}
-
-testDatabase();
