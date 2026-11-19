@@ -15,7 +15,19 @@ const postContent = document.getElementById("post-content");
 const postImage = document.getElementById("post-image");
 const publishBtn = document.getElementById("publish-btn");
 
+async function uploadImage() {
+    const image = postImage.files[0];
+
+    const fileName = Date.now() + "-" + image.name;
+
+    const { data, error } = await db.storage
+        .from("posts")
+        .upload(fileName, image);
+
+    console.log("DATA:", data);
+    console.log("ERROR:", error);
+}
+
 publishBtn.addEventListener("click", () => {
-    console.log(postContent.value);
-    console.log(postImage.files[0]);
+    uploadImage();
 });
